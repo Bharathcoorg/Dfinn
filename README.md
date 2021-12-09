@@ -1,4 +1,6 @@
 ![Logo](https://github.com/Polkadex-Substrate/Documentation/blob/master/images/Logo.svg)
+
+# Substrate Version Commit: dd297887c653e344c566e976c050b01f7dea8eef
 ## What is Polkadex? :rocket:
 Polkadex is a Open Source, Decentralized Exchange Platform made using Substrate Blockchain Framework that provides traders with the centralized user experience.
 ## Why did we do this? :gift:

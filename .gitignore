@@ -19,3 +19,12 @@
 
 /node_modules
 /artifcats
+
+/scripts/bootnode
+/scripts/validator01
+/scripts/validator02
+/scripts/customSpec.json
+/scripts/customSpecRaw.json
+/scripts/out_boot_node
+/scripts/out_validator_1
+/scripts/out_validator_2

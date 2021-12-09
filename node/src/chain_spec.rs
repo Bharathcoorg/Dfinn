@@ -11,7 +11,6 @@ use sp_authority_discovery::AuthorityId as AuthorityDiscoveryId;
 use sp_consensus_babe::AuthorityId as BabeId;
 use sp_core::{crypto::UncheckedInto, sr25519, Pair, Public};
 use sp_runtime::{traits::{IdentifyAccount, Verify}, Perbill};
-use node_polkadex_runtime::constants::currency::*;
 pub use node_polkadex_runtime::GenesisConfig;
 use node_polkadex_runtime::{
     wasm_binary_unwrap, AuthorityDiscoveryConfig, BabeConfig, BalancesConfig,
@@ -298,7 +297,6 @@ pub fn mainnet_testnet_config() -> ChainSpec {
 }
 
 use itertools::Itertools;
-use polkadex_primitives::assets::AssetId;
 
 fn adjust_treasury_balance_for_initial_validators(initial_validators: usize, endowment: u128) -> u128 {
     // The extra one is for root_key

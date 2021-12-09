@@ -27,7 +27,6 @@ pallet-offences = { default-features = false, git = "https://github.com/parityte
 pallet-session = { default-features = false, git = "https://github.com/paritytech/substrate", branch = "master" }
 pallet-staking = { default-features = false, git = "https://github.com/paritytech/substrate", branch = "master" }
 pallet-multisig = { default-features = false, git = "https://github.com/paritytech/substrate", branch = "master" }
-pallet-randomness-collective-flip = { default-features = false, git = "https://github.com/paritytech/substrate", branch = "master" }
 pallet-staking-reward-curve = { default-features = false, git = "https://github.com/paritytech/substrate", branch = "master" }
 pallet-sudo = { default-features = false, git = "https://github.com/paritytech/substrate", branch = "master" }
 pallet-utility = { default-features = false, git = "https://github.com/paritytech/substrate", branch = "master" }
@@ -51,7 +50,8 @@ pallet-authority-discovery = { default-features = false, git = "https://github.c
 pallet-contracts-primitives = { default-features = false, git = "https://github.com/paritytech/substrate", branch = "master" }
 pallet-contracts-rpc-runtime-api = { default-features = false, git = "https://github.com/paritytech/substrate", branch = "master" }
 pallet-assets = { default-features = false, git = "https://github.com/paritytech/substrate", branch = "master" }
-# pallet-randomness-collective-flip = { default-features = false, git = "https://github.com/paritytech/substrate", branch = "master" }
+
+pallet-randomness-collective-flip = { default-features = false, git = "https://github.com/paritytech/substrate", branch = "master" }
 #end added
 #frame
 frame-support = { default-features = false, git = "https://github.com/paritytech/substrate", branch = "master" }
