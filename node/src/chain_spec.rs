@@ -259,9 +259,9 @@ pub fn testnet_genesis(
 	const ENDOWMENT: u128 = 100 * FINN;
 	const STASH: u128 = 2 * FINN;
 	// Total Supply in ERC20
-	const ERC20_FINN_SUPPLY: u128 = 3_172_895 * FINN;
+	const ERC20_FINN_SUPPLY: u128 =100_000_000 FINN;
 	// Total funds in treasury also includes 2_000_000 FINN for parachain auctions
-	let mut treasury_funds: u128 = 10_200_000 * FINN;
+	let mut treasury_funds: u128 = 25_000_000 FINN;
 	treasury_funds = treasury_funds -
 		adjust_treasury_balance_for_initial_validators(initial_authorities.len(), ENDOWMENT);
 
@@ -285,7 +285,7 @@ pub fn testnet_genesis(
 		total_claims = total_claims + balance;
 	}
 
-	assert_eq!(total_claims, 6_627_105 * FINN, "Total claims is configured correctly");
+	assert_eq!(total_claims, 20_000_000 * FINN, "Total claims is configured correctly");
 
 	endowed_accounts.append(claims.as_mut());
 	// Endow to validators
@@ -298,8 +298,8 @@ pub fn testnet_genesis(
 
 	assert_eq!(
 		total_supply + ERC20_FINN_SUPPLY,
-		20_000_000 * FINN,
-		"Total Supply Not equal to 20 million"
+		100_000_000 * FINN,
+		"Total Supply Not equal to 100 Million"
 	);
 	let vesting = get_vesting_terms();
 
