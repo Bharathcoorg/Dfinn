@@ -1,11 +1,11 @@
 [package]
-name = "node-polkadex-runtime"
+name = "node-dfinn-runtime"
 version = "3.0.0"
-authors = ["Polkadex OÜ  <https://polkadex.trade>"]
+authors = ["Dfinn  <https://dfinn.live>"]
 edition = "2021"
 license = "GNU GPL v3"
-homepage = "https://polkadex.trade"
-repository = "https://github.com/Polkadex-Substrate/Polkadex"
+homepage = "https://dfinn.live"
+repository = "https://github.com/bharathcoorg/dfinn"
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
