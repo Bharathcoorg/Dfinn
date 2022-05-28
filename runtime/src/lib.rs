@@ -60,7 +60,7 @@ use pallet_session::historical as pallet_session_historical;
 pub use pallet_staking::StakerStatus;
 pub use pallet_transaction_payment::{CurrencyAdapter, Multiplier, TargetedFeeAdjustment};
 use pallet_transaction_payment::{FeeDetails, RuntimeDispatchInfo};
-pub use polkadex_primitives::{
+pub use dfinn_primitives::{
 	AccountId, AccountIndex, Balance, BlockNumber, Hash, Index, Moment, Signature,
 };
 use smallvec::smallvec;
@@ -114,7 +114,7 @@ pub fn wasm_binary_unwrap() -> &'static [u8] {
 /// Runtime version.
 pub const VERSION: RuntimeVersion = RuntimeVersion {
 	spec_name: create_runtime_str!("node"),
-	impl_name: create_runtime_str!("polkadex-official"),
+	impl_name: create_runtime_str!("dfinn-official"),
 	authoring_version: 10,
 	// Per convention: if the runtime behavior changes, increment spec_version
 	// and set impl_version to 0. If only runtime
@@ -1171,7 +1171,7 @@ impl pdex_migration::pallet::Config for Runtime {
 construct_runtime!(
 	pub enum Runtime where
 		Block = Block,
-		NodeBlock = polkadex_primitives::Block,
+		NodeBlock = dfinn_primitives::Block,
 		UncheckedExtrinsic = UncheckedExtrinsic
 	{
 		System: frame_system::{Pallet, Call, Config, Storage, Event<T>} = 0,
