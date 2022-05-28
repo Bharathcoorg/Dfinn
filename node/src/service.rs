@@ -23,8 +23,8 @@
 use crate::rpc as node_rpc;
 use futures::prelude::*;
 use node_executor::ExecutorDispatch;
-use node_polkadex_runtime::RuntimeApi;
-use polkadex_primitives::Block;
+use node_dfinn_runtime::RuntimeApi;
+use dfinn_primitives::Block;
 use sc_client_api::{BlockBackend, ExecutorProvider};
 use sc_executor::NativeElseWasmExecutor;
 use sc_network::{Event, NetworkService};
@@ -69,41 +69,41 @@ pub fn fetch_nonce(client: &FullClient, account: sp_core::sr25519::Pair) -> u32 
 pub fn create_extrinsic(
 	client: &FullClient,
 	sender: sp_core::sr25519::Pair,
-	function: impl Into<node_polkadex_runtime::Call>,
+	function: impl Into<node_dfinn_runtime::Call>,
 	nonce: Option<u32>,
-) -> node_polkadex_runtime::UncheckedExtrinsic {
+) -> node_dfinn_runtime::UncheckedExtrinsic {
 	let function = function.into();
 	let genesis_hash = client.block_hash(0).ok().flatten().expect("Genesis block exists; qed");
 	let best_hash = client.chain_info().best_hash;
 	let best_block = client.chain_info().best_number;
 	let nonce = nonce.unwrap_or_else(|| fetch_nonce(client, sender.clone()));
 
-	let period = node_polkadex_runtime::BlockHashCount::get()
+	let period = node_dfinn_runtime::BlockHashCount::get()
 		.checked_next_power_of_two()
 		.map(|c| c / 2)
 		.unwrap_or(2) as u64;
 	let tip = 0;
-	let extra: node_polkadex_runtime::SignedExtra = (
-		// frame_system::CheckNonZeroSender::<node_polkadex_runtime::Runtime>::new(),
-		frame_system::CheckSpecVersion::<node_polkadex_runtime::Runtime>::new(),
-		frame_system::CheckTxVersion::<node_polkadex_runtime::Runtime>::new(),
-		frame_system::CheckGenesis::<node_polkadex_runtime::Runtime>::new(),
-		frame_system::CheckMortality::<node_polkadex_runtime::Runtime>::from(generic::Era::mortal(
+	let extra: node_dfinn_runtime::SignedExtra = (
+		// frame_system::CheckNonZeroSender::<node_dfinn_runtime::Runtime>::new(),
+		frame_system::CheckSpecVersion::<node_dfinn_runtime::Runtime>::new(),
+		frame_system::CheckTxVersion::<node_dfinn_runtime::Runtime>::new(),
+		frame_system::CheckGenesis::<node_dfinn_runtime::Runtime>::new(),
+		frame_system::CheckMortality::<node_dfinn_runtime::Runtime>::from(generic::Era::mortal(
 			period,
 			best_block.saturated_into(),
 		)),
-		frame_system::CheckNonce::<node_polkadex_runtime::Runtime>::from(nonce),
-		frame_system::CheckWeight::<node_polkadex_runtime::Runtime>::new(),
-		pallet_transaction_payment::ChargeTransactionPayment::<node_polkadex_runtime::Runtime>::from(tip),
+		frame_system::CheckNonce::<node_dfinn_runtime::Runtime>::from(nonce),
+		frame_system::CheckWeight::<node_dfinn_runtime::Runtime>::new(),
+		pallet_transaction_payment::ChargeTransactionPayment::<node_dfinn_runtime::Runtime>::from(tip),
 	);
 
-	let raw_payload = node_polkadex_runtime::SignedPayload::from_raw(
+	let raw_payload = node_dfinn_runtime::SignedPayload::from_raw(
 		function.clone(),
 		extra.clone(),
 		(
 			// (),
-			node_polkadex_runtime::VERSION.spec_version,
-			node_polkadex_runtime::VERSION.transaction_version,
+			node_dfinn_runtime::VERSION.spec_version,
+			node_dfinn_runtime::VERSION.transaction_version,
 			genesis_hash,
 			best_hash,
 			(),
@@ -114,10 +114,10 @@ pub fn create_extrinsic(
 	use codec::Encode;
 	let signature = raw_payload.using_encoded(|e| sender.sign(e));
 
-	node_polkadex_runtime::UncheckedExtrinsic::new_signed(
+	node_dfinn_runtime::UncheckedExtrinsic::new_signed(
 		function.clone(),
 		sp_runtime::AccountId32::from(sender.public()).into(),
-		node_polkadex_runtime::Signature::Sr25519(signature.clone()),
+		node_dfinn_runtime::Signature::Sr25519(signature.clone()),
 		extra.clone(),
 	)
 }
@@ -530,8 +530,8 @@ pub fn new_full(config: Configuration) -> Result<TaskManager, ServiceError> {
 mod tests {
 	use crate::service::{new_full_base, NewFullBase};
 	use codec::Encode;
-	use polkadex_primitives::{Block, DigestItem, Signature};
-	use node_polkadex_runtime::{
+	use dfinn_primitives::{Block, DigestItem, Signature};
+	use node_dfinn_runtime::{
 		constants::{currency::CENTS, time::SLOT_DURATION},
 		Address, BalancesCall, Call, UncheckedExtrinsic,
 	};
@@ -722,15 +722,15 @@ mod tests {
 					Call::Balances(BalancesCall::transfer { dest: to.into(), value: amount });
 
 				let tip = 0;
-				let extra: node_polkadex_runtime::SignedExtra = (
-					// frame_system::CheckNonZeroSender::<node_polkadex_runtime::Runtime>::new(),
-					frame_system::CheckSpecVersion::<node_polkadex_runtime::Runtime>::new(),
-					frame_system::CheckTxVersion::<node_polkadex_runtime::Runtime>::new(),
-					frame_system::CheckGenesis::<node_polkadex_runtime::Runtime>::new(),
-					frame_system::CheckMortality::<node_polkadex_runtime::Runtime>::from(generic::Era::Immortal),
-					frame_system::CheckNonce::<node_polkadex_runtime::Runtime>::from(index),
-					frame_system::CheckWeight::<node_polkadex_runtime::Runtime>::new(),
-					pallet_transaction_payment::ChargeTransactionPayment::<node_polkadex_runtime::Runtime>::from(tip),
+				let extra: node_dfinn_runtime::SignedExtra = (
+					// frame_system::CheckNonZeroSender::<node_dfinn_runtime::Runtime>::new(),
+					frame_system::CheckSpecVersion::<node_dfinn_runtime::Runtime>::new(),
+					frame_system::CheckTxVersion::<node_dfinn_runtime::Runtime>::new(),
+					frame_system::CheckGenesis::<node_dfinn_runtime::Runtime>::new(),
+					frame_system::CheckMortality::<node_dfinn_runtime::Runtime>::from(generic::Era::Immortal),
+					frame_system::CheckNonce::<node_dfinn_runtime::Runtime>::from(index),
+					frame_system::CheckWeight::<node_dfinn_runtime::Runtime>::new(),
+					pallet_transaction_payment::ChargeTransactionPayment::<node_dfinn_runtime::Runtime>::from(tip),
 				);
 				let raw_payload = SignedPayload::from_raw(
 					function,
