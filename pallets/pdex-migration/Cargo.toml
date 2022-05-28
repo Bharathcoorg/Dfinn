@@ -1,8 +1,8 @@
 [package]
-authors = ['Polkadex Authors']
+authors = ['Dfinn Authors']
 description = 'FRAME pallet for migrating ERC20 PDEX to Native PDEX'
 edition = '2021'
-homepage = 'https://polkadex.trade'
+homepage = 'https://dfinn.live'
 name = 'pdex-migration'
 version = '1.1.0'
 
