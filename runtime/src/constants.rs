@@ -19,7 +19,7 @@
 
 /// Money matters.
 pub mod currency {
-	use polkadex_primitives::Balance;
+	use dfinn_primitives::Balance;
 
 	pub const PDEX: Balance = 1000_000_000_000;
 	pub const UNITS: Balance = PDEX;
@@ -34,7 +34,7 @@ pub mod currency {
 
 /// Time.
 pub mod time {
-	use polkadex_primitives::{BlockNumber, Moment};
+	use dfinn_primitives::{BlockNumber, Moment};
 
 	/// Since BABE is probabilistic this is the average expected block time that
 	/// we are targeting. Blocks will be produced at a minimum duration defined
