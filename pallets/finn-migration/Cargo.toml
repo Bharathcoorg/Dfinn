@@ -1,9 +1,9 @@
 [package]
 authors = ['Dfinn Authors']
-description = 'FRAME pallet for migrating ERC20 PDEX to Native PDEX'
+description = 'FRAME pallet for migrating FRC20 FINN to Native FINN'
 edition = '2021'
 homepage = 'https://dfinn.live'
-name = 'pdex-migration'
+name = 'finn-migration'
 version = '1.1.0'
 
 [package.metadata.docs.rs]
