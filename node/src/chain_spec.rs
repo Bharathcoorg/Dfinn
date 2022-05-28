@@ -217,7 +217,7 @@ fn mainnet_genesis_constuctor() -> GenesisConfig {
 
 pub fn mainnet_testnet_config() -> ChainSpec {
 	let bootnodes = vec![];
-	const DFINN_PROTOCOL_ID: &str = "pdex";
+	const DFINN_PROTOCOL_ID: &str = "finn";
 	ChainSpec::from_genesis(
 		"Bangalore Test Network",
 		"bangalore_test_network",
@@ -349,7 +349,7 @@ pub fn testnet_genesis(
 		technical_membership: Default::default(),
 		treasury: Default::default(),
 		orml_vesting: OrmlVestingConfig { vesting },
-		pdex_migration: FINNMigrationConfig { max_tokens: ERC20_FINN_SUPPLY, operational: false },
+		finn_migration: FINNMigrationConfig { max_tokens: ERC20_FINN_SUPPLY, operational: false },
 	}
 }
 
