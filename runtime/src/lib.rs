@@ -352,7 +352,7 @@ impl pallet_scheduler::Config for Runtime {
 parameter_types! {
 	pub const PreimageMaxSize: u32 = 4096 * 1024;
 	pub const PreimageBaseDeposit: Balance = 1 * DOLLARS;
-	// One cent: PDEX 10,000 / MB
+	// One cent: FINN 10,000 / MB
 	pub const PreimageByteDeposit: Balance = 1 * CENTS;
 }
 
@@ -401,7 +401,7 @@ impl pallet_babe::Config for Runtime {
 }
 
 parameter_types! {
-	pub const IndexDeposit: Balance = PDEX;
+	pub const IndexDeposit: Balance = FINN;
 }
 
 impl pallet_indices::Config for Runtime {
@@ -413,7 +413,7 @@ impl pallet_indices::Config for Runtime {
 }
 
 parameter_types! {
-	pub const ExistentialDeposit: Balance = PDEX;
+	pub const ExistentialDeposit: Balance = FINN;
 	pub const MaxLocks: u32 = 50;
 	pub const MaxReserves: u32 = 50;
 }
@@ -592,9 +592,9 @@ parameter_types! {
 
 	// signed config
 	pub const SignedMaxSubmissions: u32 = 16;
-	// 40 PDEXs fixed deposit..
+	// 40 FINNs fixed deposit..
 	pub const SignedDepositBase: Balance = deposit(2, 0);
-	// 0.01 PDEX per KB of solution data.
+	// 0.01 FINN per KB of solution data.
 	pub const SignedDepositByte: Balance = deposit(0, 10) / 1024;
 	// Each good submission will get 1 DOT as reward
 	pub SignedRewardBase: Balance = UNITS;
@@ -728,7 +728,7 @@ impl pallet_collective::Config<CouncilCollective> for Runtime {
 }
 
 parameter_types! {
-	pub const CandidacyBond: Balance = 100 * PDEX;
+	pub const CandidacyBond: Balance = 100 * FINN;
 	// 1 storage item created, key size is 32 bytes, value size is 16+16.
 	pub const VotingBondBase: Balance = deposit(1, 64);
 	// additional data per vote is 32 bytes (account id).
@@ -800,25 +800,25 @@ impl pallet_membership::Config<pallet_membership::Instance1> for Runtime {
 
 parameter_types! {
 	pub const ProposalBond: Permill = Permill::from_percent(5);
-	pub const ProposalBondMinimum: Balance = 100 * PDEX;
+	pub const ProposalBondMinimum: Balance = 100 * FINN;
 	pub const SpendPeriod: BlockNumber = 24 * DAYS;
 	pub const Burn: Permill = Permill::from_percent(0);
 	pub const TipCountdown: BlockNumber = 1 * DAYS;
 	pub const TipFindersFee: Percent = Percent::from_percent(20);
-	pub const TipReportDepositBase: Balance = 1 * PDEX;
+	pub const TipReportDepositBase: Balance = 1 * FINN;
 	pub const DataDepositPerByte: Balance = 1 * CENTS;
-	pub const BountyDepositBase: Balance = 1 * PDEX;
+	pub const BountyDepositBase: Balance = 1 * FINN;
 	pub const BountyDepositPayoutDelay: BlockNumber = 8 * DAYS;
 	pub const TreasuryPalletId: PalletId = PalletId(*b"py/trsry");
 	pub const BountyUpdatePeriod: BlockNumber = 90 * DAYS;
 	pub const MaximumReasonLength: u32 = 16384;
 	pub const BountyCuratorDeposit: Permill = Permill::from_percent(50);
-	pub const BountyValueMinimum: Balance = 10 * PDEX;
+	pub const BountyValueMinimum: Balance = 10 * FINN;
 	pub const MaxApprovals: u32 = 100;
 	pub const MaxActiveChildBountyCount: u32 = 5;
-	pub const ChildBountyValueMinimum: Balance = 1 * PDEX;
-	pub const CuratorDepositMax: Balance = 100 * PDEX;
-	pub const CuratorDepositMin: Balance = 10 * PDEX;
+	pub const ChildBountyValueMinimum: Balance = 1 * FINN;
+	pub const CuratorDepositMax: Balance = 100 * FINN;
+	pub const CuratorDepositMin: Balance = 10 * FINN;
 	pub const ChildBountyCuratorDepositBase: Permill = Permill::from_percent(10);
 }
 
@@ -873,7 +873,7 @@ parameter_types! {
 	// Fast track voting for techincal council
 	pub const FastTrackVotingPeriod: BlockNumber = 3 * HOURS;
 	// Minimum deposit for creating a proposal
-	pub MinimumDeposit: Balance = 100 * PDEX;
+	pub MinimumDeposit: Balance = 100 * FINN;
 	// Time between approved proposals are executed on-chain
 	// EnactmentPeriod > unbonding period of staking
 	pub const EnactmentPeriod: BlockNumber = 30 * DAYS;
@@ -1094,10 +1094,10 @@ impl pallet_identity::Config for Runtime {
 }
 
 parameter_types! {
-	pub const ConfigDepositBase: Balance = 5 * PDEX;
+	pub const ConfigDepositBase: Balance = 5 * FINN;
 	pub const FriendDepositFactor: Balance = 50 * CENTS;
 	pub const MaxFriends: u16 = 9;
-	pub const RecoveryDeposit: Balance = 5 * PDEX;
+	pub const RecoveryDeposit: Balance = 5 * FINN;
 }
 
 impl pallet_recovery::Config for Runtime {
@@ -1111,7 +1111,7 @@ impl pallet_recovery::Config for Runtime {
 }
 
 parameter_types! {
-	pub MinVestedTransfer: Balance = PDEX;
+	pub MinVestedTransfer: Balance = FINN;
 	pub const MaxVestingSchedules: u32 = 300;
 }
 
@@ -1161,11 +1161,11 @@ parameter_types! {
 	pub const MaxRelayers: u32 = 3;
 }
 
-impl pdex_migration::pallet::Config for Runtime {
+impl FINN_migration::pallet::Config for Runtime {
 	type Event = Event;
 	type MaxRelayers = MaxRelayers;
 	type LockPeriod = LockPeriod;
-	type WeightInfo = weights::pdex_migration::WeightInfo<Runtime>;
+	type WeightInfo = weights::finn_migration::WeightInfo<Runtime>;
 }
 
 construct_runtime!(
@@ -1207,7 +1207,7 @@ construct_runtime!(
 		ChildBounties: pallet_child_bounties = 33,
 		// Pallets
 		OrmlVesting: orml_vesting::{Pallet, Storage, Call, Event<T>, Config<T>} = 28,
-		PDEXMigration: pdex_migration::pallet::{Pallet, Storage, Call, Event<T>, Config<T>} = 29,
+		FINNMigration: finn_migration::pallet::{Pallet, Storage, Call, Event<T>, Config<T>} = 29,
 	}
 );
 /// Digest item type.
@@ -1480,7 +1480,7 @@ impl_runtime_apis! {
 			list_benchmark!(list,extra, pallet_utility, Utility);
 
 			list_benchmark!(list,extra, pallet_election_provider_multi_phase, ElectionProviderMultiPhase);
-			list_benchmark!(list,extra,  pdex_migration, PDEXMigration);
+			list_benchmark!(list,extra,  finn_migration, FINNMigration);
 
 			let storage_info = AllPalletsWithSystem::storage_info();
 
@@ -1541,7 +1541,7 @@ impl_runtime_apis! {
 			add_benchmark!(params, batches, pallet_timestamp, Timestamp);
 			add_benchmark!(params, batches, pallet_treasury, Treasury);
 			add_benchmark!(params, batches, pallet_utility, Utility);
-			add_benchmark!(params, batches, pdex_migration, PDEXMigration);
+			add_benchmark!(params, batches, finn_migration, FINNMigration);
 
 			if batches.is_empty() { return Err("Benchmark not found for this pallet.".into()) }
 			Ok(batches)
