@@ -24,15 +24,15 @@ use crate::{
 	service::{new_partial, FullClient},
 };
 use node_executor::ExecutorDispatch;
-use node_polkadex_runtime::Block;
-use polkadex_node::command_helper::{inherent_benchmark_data, BenchmarkExtrinsicBuilder};
+use node_dfinn_runtime::Block;
+use dfinn_node::command_helper::{inherent_benchmark_data, BenchmarkExtrinsicBuilder};
 use sc_cli::{ChainSpec, Result, RuntimeVersion, SubstrateCli};
 use sc_service::PartialComponents;
-// use node_polkadex_runtime::RuntimeApi;
+// use node_dfinn_runtime::RuntimeApi;
 
 impl SubstrateCli for Cli {
 	fn impl_name() -> String {
-		"Polkadex Node".into()
+		"Dfinn Node".into()
 	}
 
 	fn impl_version() -> String {
@@ -48,11 +48,11 @@ impl SubstrateCli for Cli {
 	}
 
 	fn support_url() -> String {
-		"business@polkadex.trade".into()
+		"support@finn.exchange".into()
 	}
 
 	fn copyright_start_year() -> i32 {
-		2017
+		2022
 	}
 
 	fn load_spec(&self, id: &str) -> std::result::Result<Box<dyn sc_service::ChainSpec>, String> {
@@ -73,7 +73,7 @@ impl SubstrateCli for Cli {
 	}
 
 	fn native_runtime_version(_: &Box<dyn ChainSpec>) -> &'static RuntimeVersion {
-		&node_polkadex_runtime::VERSION
+		&node_dfinn_runtime::VERSION
 	}
 }
 
