@@ -19,8 +19,8 @@ use sp_runtime::{
 
 pub use node_dfinn_runtime::GenesisConfig;
 use node_dfinn_runtime::{
-	constants::currency::PDEX, wasm_binary_unwrap, AuthorityDiscoveryConfig, BabeConfig,
-	BalancesConfig, CouncilConfig, IndicesConfig, OrmlVestingConfig, PDEXMigrationConfig,
+	constants::currency::FINN, wasm_binary_unwrap, AuthorityDiscoveryConfig, BabeConfig,
+	BalancesConfig, CouncilConfig, IndicesConfig, OrmlVestingConfig, FINNMigrationConfig,
 	SessionConfig, SessionKeys, StakerStatus, StakingConfig, SudoConfig, SystemConfig,
 	TechnicalCommitteeConfig,
 };
@@ -256,12 +256,12 @@ pub fn testnet_genesis(
 	_initial_nominators: Vec<AccountId>,
 	root_key: AccountId,
 ) -> GenesisConfig {
-	const ENDOWMENT: u128 = 100 * PDEX;
-	const STASH: u128 = 2 * PDEX;
+	const ENDOWMENT: u128 = 100 * FINN;
+	const STASH: u128 = 2 * FINN;
 	// Total Supply in ERC20
-	const ERC20_PDEX_SUPPLY: u128 = 3_172_895 * PDEX;
-	// Total funds in treasury also includes 2_000_000 PDEX for parachain auctions
-	let mut treasury_funds: u128 = 10_200_000 * PDEX;
+	const ERC20_FINN_SUPPLY: u128 = 3_172_895 * FINN;
+	// Total funds in treasury also includes 2_000_000 FINN for parachain auctions
+	let mut treasury_funds: u128 = 10_200_000 * FINN;
 	treasury_funds = treasury_funds -
 		adjust_treasury_balance_for_initial_validators(initial_authorities.len(), ENDOWMENT);
 
@@ -285,7 +285,7 @@ pub fn testnet_genesis(
 		total_claims = total_claims + balance;
 	}
 
-	assert_eq!(total_claims, 6_627_105 * PDEX, "Total claims is configured correctly");
+	assert_eq!(total_claims, 6_627_105 * FINN, "Total claims is configured correctly");
 
 	endowed_accounts.append(claims.as_mut());
 	// Endow to validators
@@ -297,8 +297,8 @@ pub fn testnet_genesis(
 	}
 
 	assert_eq!(
-		total_supply + ERC20_PDEX_SUPPLY,
-		20_000_000 * PDEX,
+		total_supply + ERC20_FINN_SUPPLY,
+		20_000_000 * FINN,
 		"Total Supply Not equal to 20 million"
 	);
 	let vesting = get_vesting_terms();
@@ -349,7 +349,7 @@ pub fn testnet_genesis(
 		technical_membership: Default::default(),
 		treasury: Default::default(),
 		orml_vesting: OrmlVestingConfig { vesting },
-		pdex_migration: PDEXMigrationConfig { max_tokens: ERC20_PDEX_SUPPLY, operational: false },
+		pdex_migration: FINNMigrationConfig { max_tokens: ERC20_FINN_SUPPLY, operational: false },
 	}
 }
 
