@@ -1,6 +1,6 @@
-// This file is part of Polkadex.
+// This file is part of Dfinn.
 
-// Copyright (C) 2020-2021 Polkadex oü.
+// Copyright (C) 2020-2021 Dfinn.
 // SPDX-License-Identifier: GPL-3.0-or-later WITH Classpath-exception-2.0
 
 // This program is free software: you can redistribute it and/or modify
