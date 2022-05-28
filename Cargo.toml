@@ -5,7 +5,7 @@ panic = 'unwind'
 members = [
     'node',
     'runtime',
-    "pallets/pdex-migration"
+    "pallets/finn-migration"
 ]
 
 
