@@ -4,7 +4,7 @@
 use frame_support::weights::Weight;
 pub mod weights;
 
-/// Weight functions needed for pdex_migration.
+/// Weight functions needed for finn_migration.
 pub trait WeightInfo {
 	fn set_migration_operational_status() -> Weight;
 	fn set_relayer_status() -> Weight;
@@ -38,7 +38,7 @@ pub mod pallet {
 
 	use crate::WeightInfo;
 
-	const MIGRATION_LOCK: frame_support::traits::LockIdentifier = *b"pdexlock";
+	const MIGRATION_LOCK: frame_support::traits::LockIdentifier = *b"finnlock";
 
 	#[derive(Encode, Decode, TypeInfo, MaxEncodedLen)]
 	#[scale_info(skip_type_params(MaxRelayers))]
@@ -66,7 +66,7 @@ pub mod pallet {
 		/// Lock Period
 		#[pallet::constant]
 		type LockPeriod: Get<<Self as frame_system::Config>::BlockNumber>;
-		/// Weight Info for PDEX migration
+		/// Weight Info for FINN migration
 		type WeightInfo: WeightInfo;
 	}
 
@@ -138,7 +138,7 @@ pub mod pallet {
 	pub enum Event<T: Config> {
 		RelayerStatusUpdated(T::AccountId, bool),
 		NotOperational,
-		NativePDEXMintedAndLocked(T::AccountId, T::AccountId, T::Balance),
+		NativeFINNMintedAndLocked(T::AccountId, T::AccountId, T::Balance),
 		RevertedMintedTokens(T::AccountId),
 		TokenBurnDetected(T::Hash, T::AccountId),
 	}
@@ -302,7 +302,7 @@ pub mod pallet {
 						// Set reduced mintable tokens
 						MintableTokens::<T>::put(mintable_tokens);
 						EthTxns::<T>::insert(&eth_hash, burn_details);
-						Self::deposit_event(Event::NativePDEXMintedAndLocked(
+						Self::deposit_event(Event::NativeFINNMintedAndLocked(
 							relayer,
 							beneficiary,
 							amount,
