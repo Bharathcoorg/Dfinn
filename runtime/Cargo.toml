@@ -93,7 +93,7 @@ orml-vesting = { git = "https://github.com/Bharathcoorg/open-runtime-module-libr
 
 # Local Dependecies
 dfinn-primitives = { git = "https://github.com/bharathcoorg/dfinn-primitives.git", branch = 'polkadot-v0.9.19', default-features = false }
-pdex-migration = { path = "../pallets/pdex-migration", default-features = false }
+finn-migration = { path = "../pallets/finn-migration", default-features = false }
 
 # Try Runtime
 frame-try-runtime = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.19", optional = true, default-features = false }
@@ -164,7 +164,7 @@ std = [
 
     "orml-vesting/std",
     "dfinn-primitives/std",
-    "pdex-migration/std",
+    "finn-migration/std",
 
     "frame-try-runtime/std",
 ]
@@ -202,7 +202,7 @@ runtime-benchmarks = [
     "orml-vesting/runtime-benchmarks",
     "hex-literal",
     "frame-election-provider-support/runtime-benchmarks",
-    "pdex-migration/runtime-benchmarks"
+    "finn-migration/runtime-benchmarks"
 ]
 
 
@@ -236,5 +236,5 @@ try-runtime = [
     "pallet-democracy/try-runtime",
     "pallet-utility/try-runtime",
     "orml-vesting/try-runtime",
-    "pdex-migration/try-runtime"
+    "finn-migration/try-runtime"
 ]
